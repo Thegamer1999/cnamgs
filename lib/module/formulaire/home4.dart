@@ -2,6 +2,7 @@ import "package:cnamgs/module/palette_couleur/home.dart";
 import"package:flutter/material.dart";
 
 import "home3.dart";
+import "home5.dart";
 
 class Home4 extends StatefulWidget {
   const Home4({super.key});
@@ -79,114 +80,7 @@ class _Home4State extends State<Home4> {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height/45,),
-            Row(
-              children: [
-                Text("Cocher suivant le cas (choix unique)",),
-              ],
-            ),
-            Row(
-              children: [
-                Checkbox(
-                  value: isYesChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      isYesChecked = value!;
-                      isNoChecked = !value!;
-                      selectedValue3 = isYesChecked ? 'Celibataire' : '';
-                    });
-                  },
-                ),
-                Expanded(child: Text('Célibataire')),
 
-                Checkbox(
-                  value: isNoChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      isNoChecked = value!;
-                      isYesChecked = !value!;
-                      selectedValue4 = isNoChecked ? 'Marie (e) legal monogame' : '';
-
-                    });
-                  },
-                ),
-                Expanded(child: Text('Marié (e) légal monogame')),
-              ],
-            ),
-            Row(
-              children: [
-                Checkbox(
-                  value: isNoChecked1,
-                  onChanged: (value) {
-                    setState(() {
-                      isNoChecked1 = value!;
-                      selectedValue5 = isNoChecked1 ? 'Union libre' : '';
-                    });
-                  },
-                ),
-                Expanded(child: Text('Union libre')),
-                Checkbox(
-                  value: isYesChecked1,
-                  onChanged: (value) {
-                    setState(() {
-                      isYesChecked1 = value!;
-                      selectedValue6 = isYesChecked1 ? 'Separe (e)' : '';
-
-                    });
-                  },
-                ),
-                Expanded(child: Text('Séparé (e)')),
-              ],
-            ),
-            Row(
-              children: [
-                Checkbox(
-                  value: isNoChecked2,
-                  onChanged: (value) {
-                    setState(() {
-                      isNoChecked2 = value!;
-                      selectedValue6 = isNoChecked2 ? 'Marie (e) à la coutume' : '';
-                    });
-                  },
-                ),
-                Expanded(child: Text('Marié (e) à la coutume')),
-                Checkbox(
-                  value: isYesChecked2,
-                  onChanged: (value) {
-                    setState(() {
-                      isYesChecked2 = value!;
-                      selectedValue7 = isYesChecked2 ? 'Marié (e) légal polygame' : '';
-
-                    });
-                  },
-                ),
-                Expanded(child: Text('Marié (e) légal polygame')),
-              ],
-            ),
-            Row(
-              children: [
-                Checkbox(
-                  value: isNoChecked2,
-                  onChanged: (value) {
-                    setState(() {
-                      isNoChecked2 = value!;
-                      selectedValue6 = isNoChecked2 ? 'Veuf ou veuve' : '';
-                    });
-                  },
-                ),
-                Expanded(child: Text('Veuf ou veuve')),
-                Checkbox(
-                  value: isYesChecked2,
-                  onChanged: (value) {
-                    setState(() {
-                      isYesChecked2 = value!;
-                      selectedValue7 = isYesChecked2 ? 'Divorce (e)' : '';
-
-                    });
-                  },
-                ),
-                Expanded(child: Text('Divorcé (e)')),
-              ],
-            ),
             Row(
               children: [
                 Expanded(child: Text("Le demandeur est le (la) conjoint (e) de l'assuré (e) référent:")),
@@ -201,12 +95,12 @@ class _Home4State extends State<Home4> {
                     setState(() {
                       Situation1 = value!;
                       Situation2 = !value!;
-                      selectedSituation1 = Situation1 ? 'Oui' : '';
+                      selectedSituation1 = Situation1 ? 'Revenu inferieur au SMIG' : '';
                       selectedSituation2 = '';
                     });
                   },
                 ),
-                Expanded(child: Text('Oui')),
+                Expanded(child: Text('Revenu inférieur au SMIG')),
                 SizedBox(width: 20),
                 Checkbox(
                   value: Situation2,
@@ -214,13 +108,45 @@ class _Home4State extends State<Home4> {
                     setState(() {
                       Situation2 = value!;
                       Situation1 = !value!;
-                      selectedSituation2 = Situation2 ? 'Non' : '';
+                      selectedSituation2 = Situation2 ? 'Réfugié(e)' : '';
                       selectedSituation1 = '';
 
                     });
                   },
                 ),
-                Expanded(child: Text('Non')),
+                Expanded(child: Text('Réfugié(e)')),
+              ],
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: Situation1,
+                  onChanged: (value) {
+                    setState(() {
+                      Situation1 = value!;
+                      Situation2 = !value!;
+                      selectedSituation1 = Situation1 ? 'Etudiant' : '';
+                      selectedSituation2 = '';
+                    });
+                  },
+                ),
+                Expanded(child: Text('Etudiant')),
+                //SizedBox(width: 20),
+                Text("Ou"),
+                SizedBox(width: 20),
+                Checkbox(
+                  value: Situation2,
+                  onChanged: (value) {
+                    setState(() {
+                      Situation2 = value!;
+                      Situation1 = !value!;
+                      selectedSituation2 = Situation2 ? 'Elève' : '';
+                      selectedSituation1 = '';
+
+                    });
+                  },
+                ),
+                Expanded(child: Text('Elève')),
               ],
             ),
             SizedBox(height: 20),
@@ -230,14 +156,14 @@ class _Home4State extends State<Home4> {
                   Row(
                     children: [
                       SizedBox(width: MediaQuery.of(context).size.width/35,),
-                      Text("Date de mariage"),
+                      Text("Etablissement scolaire"),
                       SizedBox(width: 20),
                       Expanded(
                         child: TextFormField(
                           controller: date_mariage,
                           keyboardType: TextInputType.datetime,
                           decoration: InputDecoration(
-                            labelText: "Date de mariage",
+                            labelText: "Etablissement",
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(10)
@@ -253,14 +179,14 @@ class _Home4State extends State<Home4> {
                   Row(
                     children: [
                       SizedBox(width: MediaQuery.of(context).size.width/35,),
-                      Text("Nombre d'enfants issus du mariage"),
+                      Expanded(child: Text("Date de début année scolaire (JJ-MM-AAAA)")),
                       SizedBox(width: 20),
                       Expanded(
                         child: TextFormField(
                           controller: date_mariage,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            labelText: "enfants",
+                            labelText: "année scolaire",
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(10)
@@ -275,65 +201,96 @@ class _Home4State extends State<Home4> {
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      SizedBox(width: MediaQuery.of(context).size.width/35,),
-                      Text("Date de décès de l'assuré(e)"),
-                      SizedBox(width: 20),
-                      Expanded(
-                        child: TextFormField(
-                          controller: date_mariage,
-                          keyboardType: TextInputType.datetime,
-                          decoration: InputDecoration(
-                            labelText: "Date de décès",
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius: BorderRadius.circular(10)
+                      Checkbox(
+                        value: Situation1,
+                        onChanged: (value) {
+                          setState(() {
+                            Situation1 = value!;
+                            Situation2 = !value!;
+                            selectedSituation1 = Situation1 ? 'Réligieux' : '';
+                            selectedSituation2 = '';
+                          });
+                        },
+                      ),
+                      Expanded(child: Text('Réligieux')),
+                      //SizedBox(width: 20),
+                      Checkbox(
+                        value: Situation2,
+                        onChanged: (value) {
+                          setState(() {
+                            Situation2 = value!;
+                            Situation1 = !value!;
+                            selectedSituation2 = Situation2 ? 'Ministre de culte' : '';
+                            selectedSituation1 = '';
+
+                          });
+                        },
+                      ),
+                      Expanded(child: Text('Ministre de culte')),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: Situation1,
+                        onChanged: (value) {
+                          setState(() {
+                            Situation1 = value!;
+                            Situation2 = !value!;
+                            selectedSituation1 = Situation1 ? 'Imam' : '';
+                            selectedSituation2 = '';
+                          });
+                        },
+                      ),
+                      Expanded(child: Text('Imam')),
+                      //SizedBox(width: 20),
+                      Checkbox(
+                        value: Situation2,
+                        onChanged: (value) {
+                          setState(() {
+                            Situation2 = value!;
+                            Situation1 = !value!;
+                            selectedSituation2 = Situation2 ? 'Prêtre' : '';
+                            selectedSituation1 = '';
+
+                          });
+                        },
+                      ),
+                      Expanded(child: Text('Prêtre')),
+                      Checkbox(
+                        value: Situation2,
+                        onChanged: (value) {
+                          setState(() {
+                            Situation2 = value!;
+                            Situation1 = !value!;
+                            selectedSituation2 = Situation2 ? 'Autre' : '';
+                            selectedSituation1 = '';
+
+                          });
+                        },
+                      ),
+                      Expanded(child: Text('Autre')),
+                    ],
+                  ),
+                  if (selectedSituation1.isNotEmpty)
+                    Row(
+                      children: [
+                        Text("Association religieuse"),
+                        Expanded(
+                          child: TextFormField(
+                            controller: date_mariage,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: "Association religieuse",
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width/35,),
-
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: MediaQuery.of(context).size.width/35,),
-                      Expanded(child: Text("En cas de séparation ou divorce Garde des enfants:")),
-
-
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: pere,
-                        onChanged: (value) {
-                          setState(() {
-                            pere = value!;
-                            mere = !value!;
-                            Pere = pere ? 'Père' : '';
-                            Mere = '';
-                          });
-                        },
-                      ),
-                      Expanded(child: Text('Père')),
-                      SizedBox(width: 20),
-                      Checkbox(
-                        value: mere,
-                        onChanged: (value) {
-                          setState(() {
-                            mere = value!;
-                            pere = !value!;
-                            Mere = mere ? 'Mère' : '';
-                            Pere = '';
-
-                          });
-                        },
-                      ),
-                      Expanded(child: Text('Mère')),
-                    ],
-                  )
+                      ],
+                    )
                 ],
               ),
 
@@ -343,7 +300,7 @@ class _Home4State extends State<Home4> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Palette.blue,
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Home3()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Home5()));
 
         },
         tooltip: 'Increment',
